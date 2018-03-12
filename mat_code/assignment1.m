@@ -28,7 +28,7 @@ pause(2)
 for i = 0:5
     [result, joint_handles(i+1)] = vrep.simxGetObjectHandle(clientID, ArmJoints(11*i+1:11*i+11), vrep.simx_opmode_blocking);
     if result ~= vrep.simx_return_ok
-        disp('could not get object handle for first joint')
+        sprintf('could not get joint handle%d = %d', i,ArmJoints(11*i+1:11*i+11))
     end
 end
 
@@ -39,9 +39,9 @@ end
 for i = 1:6
     [result, JointAngles(i)] = vrep.simxGetJointPosition(clientID, joint_handles(i), vrep.simx_opmode_blocking);
     if result ~= vrep.simx_return_ok
-        disp('could not get first joint variable')
+        sprintf('could not get joint variable: theta%d = %d', i,JointAngles(i))
     end
-    sprintf('current value of first joint variable: theta%d = %d', i,JointAngles(i))
+    sprintf('current value of joint variable: theta%d = %d', i,JointAngles(i))
 end
 
 
@@ -60,9 +60,9 @@ pause(3)
 for i = 1:6
     [result, JointAngles(i)] = vrep.simxGetJointPosition(clientID, joint_handles(i), vrep.simx_opmode_blocking);
     if result ~= vrep.simx_return_ok
-        disp('could not get first joint variable')
+        sprintf('could not get joint variable: theta%d = %d', i,JointAngles(i))
     end
-    sprintf('current value of first joint variable: theta%d = %d', i,JointAngles(i))
+    sprintf('current value of joint variable: theta%d = %d', i,JointAngles(i))
 end
 
 %====================================================================
