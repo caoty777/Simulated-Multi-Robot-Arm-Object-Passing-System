@@ -32,6 +32,8 @@ vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 You should see your robot move, and in the terminal, you should see the joint angle values. 
 
+Find our demo [here.](https://www.youtube.com/watch?v=sbDnvnmbf_Q)
+
 
 More information can be found in the documentation (e.g., look at "Writing code in and around V-REP"): [here](http://www.coppeliarobotics.com/helpFiles/index.html)
 
