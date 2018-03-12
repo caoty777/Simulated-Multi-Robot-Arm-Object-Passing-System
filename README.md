@@ -40,5 +40,5 @@ Commands available to you in the python/Matlab remote API: [python](http://www.c
 [matlab](http://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsMatlab.htm)
 
 
-## Assignment 1
+## Assignment 2
 
