@@ -26,8 +26,8 @@ vrep/programming/remoteApiBindings/python/python/vrepConst.py
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 ##### Matlab
-vrep/programming/remoteApiBindings/matlab/matlab/vrep.py
-vrep/programming/remoteApiBindings/matlab/matlab/vrepConst.py
+vrep/programming/remoteApiBindings/matlab/matlab/vrep.m
+vrep/programming/remoteApiBindings/matlab/matlab/vrepConst.m
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 8. copy this test code into "my_workspace"
@@ -36,7 +36,7 @@ vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 (vrep/programming/remoteApiBindings/python/python/simpleTest.py) 
 
 ##### Matlab
-(vrep/programming/remoteApiBindings/matlab/matlab/simpleTest.py)
+(vrep/programming/remoteApiBindings/matlab/matlab/simpleTest.m)
 
 9. modify this code like the code we provide, rename it "assignment1.py" for python or "assignment1.m" for matlab.
 
