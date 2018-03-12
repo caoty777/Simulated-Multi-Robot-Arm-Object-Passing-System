@@ -9,6 +9,8 @@ This portion describes the necessary steps to carry out assignment 1 with python
 2. from the folder run "./vrep.app/Contents/MacOS/vrep"
 
 3. Drag a robot into the GUI, and remove associated scripts.
+![alt text](https://github.com/axander89/ECE470/blob/master/imgs/assignmet1_1.png " remove child scripts")
+
 
 4. save the scene "File -> Save Scene As..."
 
