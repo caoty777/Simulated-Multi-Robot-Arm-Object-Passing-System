@@ -19,6 +19,7 @@ This portion describes the necessary steps to carry out assignment 1 with python
 6. create a workspace for your robot: create a new "my_workspace" folder.
 
 7. copy these files into "my_workspace" folder
+
 vrep/programming/remoteApiBindings/python/python/vrep.py
 vrep/programming/remoteApiBindings/python/python/vrepConst.py
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
@@ -37,4 +38,7 @@ More information can be found in the documentation (e.g., look at "Writing code 
 
 Commands available to you in the python/Matlab remote API: [python](http://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsPython.htm)
 [matlab](http://www.coppeliarobotics.com/helpFiles/en/remoteApiFunctionsMatlab.htm)
+
+
+## Assignment 1
 
