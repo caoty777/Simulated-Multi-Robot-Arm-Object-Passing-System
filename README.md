@@ -1,7 +1,8 @@
 # ECE470 Introduction to Robotics
-## Assignment 1
+## Checkpoint 1
 
-This portion describes the necessary steps to carry out assignment 1 with python remote API
+Checkpoint 1 describes the necessary steps to obtain remote api comunication with a desired robot in V-REP using python or matlab.
+In this specific tutorial, we use the Jaco arm.
 
 1. Download V-REP PRO EDU from the Coppelia Robotics website: [here](http://www.coppeliarobotics.com)
 
