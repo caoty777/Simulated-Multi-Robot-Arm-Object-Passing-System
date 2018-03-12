@@ -16,19 +16,31 @@ This portion describes the necessary steps to carry out assignment 1 with python
 
 5. Install python. [Conda](https://www.anaconda.com) is highly recommended (Products -> Download -> Python 3.6 version)  
 
-6. create a workspace for your robot: create a new "my_workspace" folder.
+6. create a workspace for your robot. (i.e. create a new "my_workspace" folder)
 
-7. copy these files into "my_workspace" folder
+7. copy these files into "my_workspace" folder.
 
+#### Python
 vrep/programming/remoteApiBindings/python/python/vrep.py
 vrep/programming/remoteApiBindings/python/python/vrepConst.py
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
-8. copy this python test code (vrep/programming/remoteApiBindings/python/python/simpleTest.py) into "my_workspace"
+#### Matlab
+vrep/programming/remoteApiBindings/matlab/matlab/vrep.py
+vrep/programming/remoteApiBindings/matlab/matlab/vrepConst.py
+vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
-9. modify this code like the code we provide, rename it "assignment1.py"
+8. copy this test code into "my_workspace"
 
-10. from terminal run "python assignment1.py"
+#### Python
+(vrep/programming/remoteApiBindings/python/python/simpleTest.py) 
+
+#### Matlab
+(vrep/programming/remoteApiBindings/matlab/matlab/simpleTest.py)
+
+9. modify this code like the code we provide, rename it "assignment1.py" for python or "assignment1.m" for matlab.
+
+10. If you are using python, from terminal run "python assignment1.py".  If you are using matlab, from matlab run the code assignment1.m.
 
 You should see your robot move, and in the terminal, you should see the joint angle values. 
 
