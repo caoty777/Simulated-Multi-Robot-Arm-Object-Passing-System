@@ -26,8 +26,8 @@ vrep/programming/remoteApiBindings/python/python/vrepConst.py
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 ##### Matlab
-vrep/programming/remoteApiBindings/matlab/matlab/vrep.m
-vrep/programming/remoteApiBindings/matlab/matlab/vrepConst.m
+vrep/programming/remoteApiBindings/matlab/matlab/remMpi.m
+vrep/programming/remoteApiBindings/matlab/matlab/remoteApiProto.m
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 8. copy this test code into "my_workspace"
