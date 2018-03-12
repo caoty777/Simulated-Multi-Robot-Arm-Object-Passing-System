@@ -20,22 +20,22 @@ This portion describes the necessary steps to carry out assignment 1 with python
 
 7. copy these files into "my_workspace" folder.
 
-#### Python
+##### Python
 vrep/programming/remoteApiBindings/python/python/vrep.py
 vrep/programming/remoteApiBindings/python/python/vrepConst.py
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
-#### Matlab
+##### Matlab
 vrep/programming/remoteApiBindings/matlab/matlab/vrep.py
 vrep/programming/remoteApiBindings/matlab/matlab/vrepConst.py
 vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 8. copy this test code into "my_workspace"
 
-#### Python
+##### Python
 (vrep/programming/remoteApiBindings/python/python/simpleTest.py) 
 
-#### Matlab
+##### Matlab
 (vrep/programming/remoteApiBindings/matlab/matlab/simpleTest.py)
 
 9. modify this code like the code we provide, rename it "assignment1.py" for python or "assignment1.m" for matlab.
