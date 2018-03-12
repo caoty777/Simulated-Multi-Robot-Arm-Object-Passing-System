@@ -26,9 +26,9 @@ vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 8. copy this python test code (vrep/programming/remoteApiBindings/python/python/simpleTest.py) into "my_workspace"
 
-9. modify this code like the code we provide, rename it "test.py"
+9. modify this code like the code we provide, rename it "assignment1.py"
 
-10. from terminal run "python test.py"
+10. from terminal run "python assignment1.py"
 
 You should see your robot move, and in the terminal, you should see the joint angle values. 
 
