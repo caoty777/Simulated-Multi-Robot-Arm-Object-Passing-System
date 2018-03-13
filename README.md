@@ -63,11 +63,15 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 2. We define a set of desired joint angles, 'theta_desired'.
 
-3. We obtain T<sub>1</sub><sup>0</sup>, where T<sub>1</sub><sup>0</sup> is the homogeneous orientation of the base {b} of the Jaco arm w.r.t. the world.
+3. We obtain T<sub>1</sub><sup>0</sup>, where T<sub>1</sub><sup>0</sup> is the homogeneous configuration of the base {b} of the Jaco arm w.r.t. the world.
 
 4. For each joint we manually obtain a<sub>i</sub>, p<sub>i</sub>, and S<sub>i</sub> w.r.t. the base {b}.
 
 5. We convert S<sub>i</sub> to be w.r.t. the world.
+
+6. We obtain M<sub>1</sub><sup>0</sup>, where M<sub>1</sub><sup>0</sup> is the homogeneous configuration of the end efector (ee) w.r.t. the world.
+
+7. We predict the resulting configuration M<sub>2</sub><sup>0</sup> = e<sup>[S<sub>1</sub>]theta_desired<sub>1</sub></sup> . . .e<sup>[S<sub>6</sub>]theta_desired<sub>6</sub></sup>M<sub>1</sub><sup>0</sup>.
 
 
 
