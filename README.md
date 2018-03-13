@@ -79,13 +79,6 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 10. We retrieve and print the resulting pose of the end-effector.
 
-11. We the predicted and resulting pose.
+11. We compare the printed results and the coordinates of the 'dummy' and the end-effector.
 
-
-
-
-
-
-
-
-
+Find our demo [here](https://youtu.be/UyVPlmozkV8). As a bonus, we included the inverse kinematics, which will be next week's checkpoint.
