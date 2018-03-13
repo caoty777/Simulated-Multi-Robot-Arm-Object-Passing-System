@@ -61,7 +61,7 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 1. First we obtain the schematics of the Jaco arm. ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/assignment2_1.png "schematics")
 
-2. We define a set of desired joint angles, 'theta_desired'.
+2. We define a set of desired joint angles, theta_desired.
 
 3. We obtain T<sub>1</sub><sup>0</sup>, where T<sub>1</sub><sup>0</sup> is the homogeneous configuration of the base {b} of the Jaco arm w.r.t. the world.
 
@@ -69,9 +69,17 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 5. We convert S<sub>i</sub> to be w.r.t. the world.
 
-6. We obtain M<sub>1</sub><sup>0</sup>, where M<sub>1</sub><sup>0</sup> is the homogeneous configuration of the end efector (ee) w.r.t. the world.
+6. We obtain M<sub>1</sub><sup>0</sup>, where M<sub>1</sub><sup>0</sup> is the homogeneous configuration of the end-effector w.r.t. the world.
 
-7. We predict the resulting configuration M<sub>2</sub><sup>0</sup> = e<sup>[S<sub>1</sub>]theta_desired<sub>1</sub></sup> . . .e<sup>[S<sub>6</sub>]theta_desired<sub>6</sub></sup>M<sub>1</sub><sup>0</sup>.
+7. We predict and print the resulting configuration M<sub>2</sub><sup>0</sup> = e<sup>[S<sub>1</sub>]theta_desired<sub>1</sub></sup> . . .e<sup>[S<sub>6</sub>]theta_desired<sub>6</sub></sup>M<sub>1</sub><sup>0</sup>.
+
+8. We position a 'dummy' frame at M<sub>2</sub><sup>0</sup>.
+
+9. We position our Jaco arm at the desired angles theta_desired<sub>i</sub>.
+
+10. We retrieve and print the resulting pose of the end-effector.
+
+11. We the predicted and resulting pose.
 
 
 
