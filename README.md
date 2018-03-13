@@ -61,9 +61,9 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 1. First we start with a set of joint angles, 'theta_desired'.
 
-2. We obtain T<sub>1</sub><sup>0</sup>
+2. We obtain T<sub>1</sub><sup>0</sup>, where T<sub>1</sub><sup>0</sup> is the homogeneous orientation of the base {b} of the Jaco arm w.r.t. the world.
 
-
+3. We manually obtain a<sub>i</sub>, p<sub>i</sub>, and S<sub>i</sub> for K_2^5
 
 
 
