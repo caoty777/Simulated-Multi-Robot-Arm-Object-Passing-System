@@ -59,11 +59,17 @@ Commands available to you in the python/Matlab remote API: [python](http://www.c
 
 Checkpoint 2 describes a way to derive and implement the forward kinematics of the Jaco arm. 
 
-1. First we start with a set of joint angles, 'theta_desired'.
+1. First we obtain the schematics of the Jaco arm. ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/assignment2_1.png "schematics")
 
-2. We obtain T<sub>1</sub><sup>0</sup>, where T<sub>1</sub><sup>0</sup> is the homogeneous orientation of the base {b} of the Jaco arm w.r.t. the world.
+2. We define a set of desired joint angles, 'theta_desired'.
 
-3. We manually obtain a<sub>i</sub>, p<sub>i</sub>, and S<sub>i</sub> for K_2^5
+3. We obtain T<sub>1</sub><sup>0</sup>, where T<sub>1</sub><sup>0</sup> is the homogeneous orientation of the base {b} of the Jaco arm w.r.t. the world.
+
+4. For each joint we manually obtain a<sub>i</sub>, p<sub>i</sub>, and S<sub>i</sub> w.r.t. the base {b}.
+
+5. We convert S<sub>i</sub> to be w.r.t. the world.
+
+
 
 
 
