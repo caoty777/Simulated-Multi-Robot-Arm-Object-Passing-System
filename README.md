@@ -57,3 +57,17 @@ Commands available to you in the python/Matlab remote API: [python](http://www.c
 
 ## Checkpoint 2
 
+Checkpoint 2 describes a way to derive and implement the forward kinematics of the Jaco arm. 
+
+1. First we start with a set of joint angles, 'theta_desired'.
+
+2. We obtain T<sub>1</sub><sup>0</sup>
+
+
+
+
+
+
+
+
+
