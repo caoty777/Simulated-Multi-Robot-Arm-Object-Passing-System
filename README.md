@@ -82,3 +82,15 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 11. We compare the printed results and the coordinates of the 'dummy' and the end-effector.
 
 Find our demo [here](https://youtu.be/UyVPlmozkV8). As a bonus, we included the inverse kinematics, which will be next week's checkpoint.
+
+
+## Checkpoint 3
+
+Checkpoint 3 describes a way to derive and implement the inverse kinematics of the Jaco arm. 
+
+Find a [dummy demo](https://youtu.be/UyVPlmozkV8)
+
+
+
+
+
