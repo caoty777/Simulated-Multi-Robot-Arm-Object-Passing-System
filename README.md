@@ -81,14 +81,44 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 11. We compare the printed results and the coordinates of the 'dummy' and the end-effector.
 
-Find our demo [here](https://youtu.be/UyVPlmozkV8). As a bonus, we included the inverse kinematics, which will be next week's checkpoint.
+12. For the bonus point, we implement the inverse kinematics, which will be next week's checkpoint.
+
+Find our demo [here](https://youtu.be/UyVPlmozkV8).
 
 
 ## Checkpoint 3
 
 Checkpoint 3 describes a way to derive and implement the inverse kinematics of the Jaco arm. 
 
-Find a [dummy demo](https://youtu.be/UyVPlmozkV8)
+1. The goal pose of the tool frame is represented by a yellow dummy ball in the scene. During a simulation, the user can drag the dummy ball to any place he/she wants and the jaco arm will try to reach the new goal pose.
+
+2. From last week's work, we already have the screw axes S<sub>i</sub> of all six joints and the forward kinematics algorithm.
+
+3. Now we begin the inverse kinematics algorithm. First, we randomly choose a set of joint angles theta_1, theta_2...theta_6 as the initial joint angles of the jaco arm.
+
+4. Using the forward kinematics function with the six joint angles as input, we obtain the predicted pose of the tool frame T<sub>curr</sub> w.r.t the world frame.
+
+5. We obtain the current goal pose T<sub>goal</sub> w.r.t the world frame, as specified by the user input.
+
+6. From the formula T<sub>goal</sub>=e<sup>[V]</sup>M, we derive that [V]=logm(T<sub>goal</sub>M<sup>-1</sup>).
+
+7. We extract the spatial twist V from its matrix form [V].
+
+8. We check if the norm of V is less than 0.01. If so, we stop the algorithm since the current pose is already close enough to the goal pose, and the current set of joint angles is the desired set of joint angles. So we skip to step 13. If not, we continue to the next step.
+
+9. We call the helper function to calculate the space jacobian matrix J associated with the current set of joint angles.
+
+10. From the formula V=J*theta_dot, we derive that theta_dot=J<sup>-1</sup>V.
+
+11. Finally, we update the joint angles by theta_new = theta + theta_dot, where theta is the current set of joint angles and theta_new is the updated set of joint angles.
+
+12. We go back to step 4 with the updated set of joint angles and iterate again.
+
+13. We feed the desired set of joint angles to the six joints of the jaco arm. In simulation, the arm should move to align the tool frame with the goal frame indicated by the dummy ball.
+
+14. For the bonus point, 
+
+Find our demo [here](https://youtu.be/3RZ7FuynWso).
 
 
 
