@@ -116,7 +116,8 @@ Checkpoint 3 describes a way to derive and implement the inverse kinematics of t
 
 13. We feed the desired set of joint angles to the six joints of the jaco arm. In simulation, the arm should move to align the tool frame with the goal frame indicated by the dummy ball.
 
-14. For the bonus point, 
+14. For the bonus point, we created our own code to get the handle of the JACO arm. This provides us with the ability to open and close the JACO hand at any time we want. 
+
 
 Find our demo [here](https://youtu.be/3RZ7FuynWso).
 
