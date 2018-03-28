@@ -1,9 +1,12 @@
-function th = inverseKinematics(M,R,S,e)
+function [th msg] = inverseKinematics(M,R,S,e)
     
+    msg = 0;
     sz = size(S);
     sz = sz(2);
-    thetaInit = rand(sz,1);
+    %%%%
+    thetaInit = getThetas(M,R,S);
     th = thetaInit;
+    %%%%
     alpha = 1;
     E = zeros(4,4,sz+1);
     E(:,:,1) = eye(4);
@@ -28,10 +31,18 @@ function th = inverseKinematics(M,R,S,e)
         thetadot = J\v;
         th = th+thetadot*alpha;
         er = norm(V);
-        if k > 1000
+        if k > 100
             er = 0.0;
-            disp("not found with 1000")
+            disp("NO SOLUTION!!")
+            msg = 1;
+            return
+        end
+        if msg == 1
+            return 
         end
         k=k+1;
+    end
+    if msg == 1
+        return
     end
 end
