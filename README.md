@@ -45,7 +45,7 @@ vrep/programming/remoteApiBindings/lib/lib/remoteApi.dylib
 
 You should see your robot move, and in the terminal, you should see the joint angle values. 
 
-Find our demo [here.](https://www.youtube.com/watch?v=sbDnvnmbf_Q)
+Find the demo [here.](https://www.youtube.com/watch?v=sbDnvnmbf_Q)
 
 
 More information can be found in the documentation (e.g., look at "Writing code in and around V-REP"): [here](http://www.coppeliarobotics.com/helpFiles/index.html)
@@ -83,7 +83,7 @@ Checkpoint 2 describes a way to derive and implement the forward kinematics of t
 
 12. For the bonus point, we implement the inverse kinematics, which will be next week's checkpoint.
 
-Find our demo [here](https://youtu.be/UyVPlmozkV8).
+Find the demo [here](https://youtu.be/UyVPlmozkV8).
 
 
 ## Checkpoint 3
@@ -118,7 +118,7 @@ Checkpoint 3 describes a way to derive and implement the inverse kinematics of t
 
 14. For the bonus point, we created our own code to get the handle of the JACO arm. This provides us with the ability to open and close the JACO hand at any time we want. 
 
-Find our demo [here](https://youtu.be/3RZ7FuynWso).
+Find the demo [here](https://youtu.be/3RZ7FuynWso).
 
 
 
@@ -140,16 +140,4 @@ Checkpoint 4 describes a way to detect self-collision and collision with other o
     || P<sub>1</sub> - P<sub>2</sub> || <= radius<sub>i</sub> + radius<sub>j</sub>
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
+Find the demo [here](https://www.youtube.com/watch?v=TOIL0BH2obo&feature=youtu.be).
