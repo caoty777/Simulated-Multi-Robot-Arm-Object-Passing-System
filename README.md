@@ -124,10 +124,30 @@ Find our demo [here](https://youtu.be/3RZ7FuynWso).
 
 ## Checkpoint 4
 
-Checkpoint 4 describes a way to detect self-collision and collision with other objects in the environment. The algorithm is as follows:
+Checkpoint 4 describes a way to detect self-collision and collision with other objects in the environment.
 
-1. Given \theta 
+1. Given theta<sub>initial</sub> and theta<sub>goal</sub>, find theta:[0,1] -> R<sup>n</sup> such thta:
 
+    1. theta is continuous
+    2. theta(0) = theta<sub>initial</sub>
+    3. theta(1) = theta<sub>goal</sub>
+    4. theta is not in collision for 0 < t < 1
+
+2. We detect collision by assigning points along our robot, assigning a volume to the points, we use spheres in this case, and then we determine that these spheres do not come into contact among each other, or with other objects along the path.
+
+3. We obtained the position of each point/sphere and compute the distances to  to all other points in the robot and objects in the environment. We have collision if:
+
+    || P<sub>1</sub> - P<sub>2</sub> || <= radius<sub>i</sub> + radius<sub>j</sub>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 
