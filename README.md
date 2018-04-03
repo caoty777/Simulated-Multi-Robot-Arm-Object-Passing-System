@@ -139,5 +139,8 @@ Checkpoint 4 describes a way to detect self-collision and collision with other o
 
     || P<sub>1</sub> - P<sub>2</sub> || <= radius<sub>i</sub> + radius<sub>j</sub>
     
-    
 Find the demo [here](https://www.youtube.com/watch?v=TOIL0BH2obo&feature=youtu.be).
+
+For the bonus, we implemented hand graspping. Find the bonus [here](https://www.youtube.com/watch?v=PDSB02fIcXc&feature=youtu.be).
+
+
