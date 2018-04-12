@@ -159,7 +159,6 @@ Checkpoint 5 implements path planning algorithm. Building up from checkpoint 4 w
 
     ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/PathPlanning2.png "PathPlanning1")
     
-
-
+Find the demo [here](https://www.youtube.com/watch?v=ouvhs-biBL8&feature=youtu.be).
 
 
