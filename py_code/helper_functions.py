@@ -4,6 +4,7 @@ import time
 import random
 from scipy.linalg import expm, logm
 from pprint import pprint
+import math
 
 
 def skew_6(x):
@@ -180,7 +181,7 @@ def inverse_kinematics(clientID,M,goal_pose,curr_pose,joints_zero_pos,joint_hand
         temp = np.matmul(goal_pose,np.linalg.inv(curr_pose))
         V_bracket = logm(temp)
         V = deskew_6(V_bracket)
-        if np.linalg.norm(V) < 1:
+        if np.linalg.norm(V) < 0.5:
             joint_angles = GetAllJointAngles(clientID,joints_zero_pos,joint_handles)
         else:
             theta1 = deg2rad(random.randint(-180,180))
@@ -197,7 +198,7 @@ def inverse_kinematics(clientID,M,goal_pose,curr_pose,joints_zero_pos,joint_hand
             temp = np.matmul(goal_pose,np.linalg.inv(curr_T))
             V_bracket = logm(temp)
             V = deskew_6(V_bracket)
-            if np.linalg.norm(V) < 0.01:
+            if np.linalg.norm(V) < 0.005:
                 error = 0
                 break
             # now find the Jacobian matrix
@@ -228,44 +229,15 @@ def GetAllJointAngles(clientID,joints_zero_pos,joint_handles):
     return thetas
 
 def OptimizeJointAngles(thetas):
+    thetas = thetas % (2*np.pi)
     for i in range(6):
-        if i != 1 and i != 2:
-            if thetas[i] >= np.pi and thetas[i] <= 2*np.pi:
-                thetas[i] = thetas[i] - 2*np.pi
-            elif thetas[i] >= -2*np.pi and thetas[i] <= -np.pi:
-                thetas[i] = thetas[i] + 2*np.pi
+        #if i != 1 and i != 2:
+        if thetas[i] >= np.pi and thetas[i] <= 2*np.pi:
+            thetas[i] = thetas[i] - 2*np.pi
+        elif thetas[i] >= -2*np.pi and thetas[i] <= -np.pi:
+            thetas[i] = thetas[i] + 2*np.pi
     return thetas
 
-#def UpdateSpherePos(sphere_init_pos,thetas,S1,S2,S3,S4,S5,S6):
-    #sphere_new_pos = sphere_init_pos
-    #tem_init_pos_2 = np.concatenate((sphere_init_pos[2],np.array([1])))
-    #temp = expm(skew_6(S1)*thetas[0])
-    #tem_new_pos_2 = np.matmul(temp,tem_init_pos_2)
-    #sphere_new_pos[2] = tem_new_pos_2[0:3]
-
-    #tem_init_pos_3 = np.concatenate((sphere_init_pos[3],np.array([1])))
-    #temp = np.matmul(temp,expm(skew_6(S2)*thetas[1]))
-    #tem_new_pos_3 = np.matmul(temp,tem_init_pos_3)
-    #sphere_new_pos[3] = tem_new_pos_3[0:3]
-
-    #tem_init_pos_4 = np.concatenate((sphere_init_pos[4],np.array([1])))
-    #temp = np.matmul(temp,expm(skew_6(S3)*thetas[2]))
-    #tem_new_pos_4 = np.matmul(temp,tem_init_pos_4)
-    #sphere_new_pos[4] = tem_new_pos_4[0:3]
-
-    #tem_init_pos_5 = np.concatenate((sphere_init_pos[5],np.array([1])))
-    #temp = np.matmul(temp,expm(skew_6(S4)*thetas[3]))
-    #tem_new_pos_5 = np.matmul(temp,tem_init_pos_5)
-    #sphere_new_pos[5] = tem_new_pos_5[0:3]
-
-    #tem_init_pos_6 = np.concatenate((sphere_init_pos[6],np.array([1])))
-    #temp = np.matmul(temp,expm(skew_6(S5)*thetas[4]))
-    #tem_new_pos_6 = np.matmul(temp,tem_init_pos_6)
-    #sphere_new_pos[6] = tem_new_pos_6[0:3]
-
-
-
-    #return sphere_new_pos
 
 def IsTwoBallCollision(p1,p2,r1,r2):
     result = 1
@@ -273,19 +245,230 @@ def IsTwoBallCollision(p1,p2,r1,r2):
     diff[0] = p1[0] - p2[0]
     diff[1] = p1[1] - p2[1]
     diff[2] = p1[2] - p2[2]
+    #print np.linalg.norm(diff)
     if np.linalg.norm(diff) > (r1 + r2):
         result = 0
     return result
 
-def CollisionCheck(sphere_p,sphere_r):
+def CollisionCheck(p_robot,p_obstacle,r_robot,r_obstacle):
+    n,m = np.shape(p_robot)
+    a,b = np.shape(p_obstacle)
     result = 0
-    for i in range(7):
-        if IsTwoBallCollision(sphere_p[i],sphere_p[7],sphere_r[i],sphere_r[7]) == 1:
-            result = 1
+    for i in range(n):
+        if result == 1:
             break
-            
+        
+        # self collision check
+        for j in range(i+1,n):
+            if IsTwoBallCollision(p_robot[i],p_robot[j],r_robot[i],r_robot[j]) == 1:
+                result = 1
+                break
+        
+        if result == 1:
+            break
+        
+        # object collision check
+        for k in range(a):
+            if IsTwoBallCollision(p_robot[i],p_obstacle[k],r_robot[i],r_obstacle[k]) == 1:
+                result = 1
+                break  
     return result
 
+def UpdateSphereP(p_init,thetas,S1,S2,S3,S4,S5,S6):
+    S = np.concatenate((S1,S2,S3,S4,S5,S6),axis=1)
+    n,m = np.shape(p_init)
+    new_p = []
+    new_p.append(p_init[0])
+    temp = np.identity(4)
+
+    # Sphere 'Dummy0' is affected only by joint 1
+    temp = np.matmul(temp, expm(skew_6(S1)*thetas[0]))
+    p_init_tem = np.concatenate((p_init[1],np.array([1.0])))
+    p_new_tem = np.matmul(temp,p_init_tem)
+    p_new = p_new_tem[0:3]
+    new_p.append(p_new)
+
+    # Sphere 'Dummy1' and 'Dummy2' is affected by joint 1,2
+    temp = np.matmul(temp, expm(skew_6(S2)*thetas[1]))
+    for i in range(2):
+        p_init_tem = np.concatenate((p_init[i+2],np.array([1.0])))
+        p_new_tem = np.matmul(temp,p_init_tem)
+        p_new = p_new_tem[0:3]
+        new_p.append(p_new)
+
+    # The remaining spheres are affected by one more joint at each step
+    for i in range(2,6):
+        temp = np.matmul(temp,expm(skew_6(np.reshape(S[:,i],(6,1)))*thetas[i]))
+        p_init_tem = np.concatenate((p_init[i+2],np.array([1.0])))
+        p_new_tem = np.matmul(temp,p_init_tem)
+        p_new = p_new_tem[0:3]
+        new_p.append(p_new)
+
+    return new_p
+
+def StraightLineCollisionCheck(theta_a,theta_b,p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6):
+    s_value = np.linspace(0,1,21)
+    result = 0
+    
+    for i in range(1,21):
+        curr_s = s_value[i]
+        curr_theta = (1-curr_s)*theta_a + curr_s*theta_b
+        curr_p_robot = UpdateSphereP(p_robot,curr_theta,S1,S2,S3,S4,S5,S6)
+        if CollisionCheck(curr_p_robot,p_obstacle,r_robot,r_obstacle) == 1:
+            result = 1
+            break
+    return result
+
+def IsTwoConfigSame(thetas1,thetas2):
+    n = len(thetas1)
+    result = 1
+    for i in range(n):
+        if thetas1[i] != thetas2[i]:
+            result = 0
+            break
+    return result
+
+def DistanceTwoConfig(theta1,theta2):
+    n = len(theta1)
+    diff = np.zeros(n)
+    for i in range(n):
+        diff[i] = theta1[i]-theta2[i]
+    distance = np.linalg.norm(diff)
+    return distance
+
+def FindClosestConfig(curr_theta,theta_list):
+    num_existing = len(theta_list)
+    min_distance = math.inf
+    min_index = -1
+    for i in range(num_existing):
+        curr_dist = DistanceTwoConfig(curr_theta,theta_list[i])
+        if curr_dist < min_distance:
+            min_index = i
+            min_distance = curr_dist
+    if min_distance == 0.0:
+        min_index = -1
+    return min_index
+
+def ReverseList(x):
+    temp1 = math.floor(len(x) / 2)
+    temp2 = len(x) % 2
+    if temp2 == 0:
+        left_idx = temp1 - 1
+        right_idx = temp1
+    else:
+        left_idx = temp1 - 1
+        right_idx = temp1 + 1
+    
+    while left_idx >= 0:
+        temp3 = x[right_idx]
+        x[right_idx] = x[left_idx]
+        x[left_idx] = temp3
+        left_idx -= 1
+        right_idx += 1
+    return x
+
+def PathPlanner(start_angles,goal_angles,p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6):
+    start_config_list = []
+    goal_config_list = []
+    start_config_parent = []
+    goal_config_parent = []
+    start_config_list.append(start_angles)
+    start_config_parent.append(-1)
+    goal_config_list.append(goal_angles)
+    goal_config_parent.append(-1)
+
+    PP_success = 0
+
+    for iter_idx in range(10000):
+        curr_theta = np.zeros(len(start_angles))
+        ConnectedToStartListFlag = 0
+        ConnectedToGoalListFlag = 0
+
+        # randomly sample a new configuration, called curr_theta
+        for i in range(len(curr_theta)):
+            if i == 1:
+                curr_theta[i] = deg2rad(random.randint(47-180,313-180))
+            elif i == 2:
+                curr_theta[i] = deg2rad(random.randint(19-180,341-180))
+            else:
+                curr_theta[i] = deg2rad(random.randint(-180,180))
+        while IsTwoConfigSame(curr_theta,start_angles) == 1 or IsTwoConfigSame(curr_theta,goal_angles) == 1:
+            for i in range(len(curr_theta)):
+                if i == 1:
+                    curr_theta[i] = deg2rad(random.randint(47-180,313-180))
+                elif i == 2:
+                    curr_theta[i] = deg2rad(random.randint(19-180,341-180))
+                else:
+                    curr_theta[i] = deg2rad(random.randint(-180,180))
+        
+        # first try to connect this current config to the start list
+        closest_start_config_index = FindClosestConfig(curr_theta,start_config_list)
+        if closest_start_config_index != -1:
+            closest_config = start_config_list[closest_start_config_index]
+            if StraightLineCollisionCheck(closest_config,curr_theta,p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6) == 0:
+                start_config_list.append(curr_theta)
+                start_config_parent.append(closest_start_config_index)
+                ConnectedToStartListFlag = 1
+        
+        # second, try to connect this current config to the goal list
+        closest_goal_config_index = FindClosestConfig(curr_theta,goal_config_list)
+        if closest_goal_config_index != -1:
+            closest_config = goal_config_list[closest_goal_config_index]
+            if StraightLineCollisionCheck(closest_config,curr_theta,p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6) == 0:
+                goal_config_list.append(curr_theta)
+                goal_config_parent.append(closest_goal_config_index)
+                ConnectedToGoalListFlag = 1
+        
+        # third, check if start and goal has been connected together
+        if (ConnectedToStartListFlag == 1) and (ConnectedToGoalListFlag == 1):
+            PP_success = 1
+            break
+
+    # If a path has been found, trace it back
+    if PP_success == 1:
+        middle_idx_start = len(start_config_list) - 1
+        curr_idx_start = middle_idx_start
+        middle_idx_goal = len(goal_config_list) - 1
+        curr_idx_goal = middle_idx_goal
+        path_from_start = []
+        path_from_goal = []
+        # trace back the path from start
+        while start_config_parent[curr_idx_start] != -1:
+            path_from_start.append(start_config_list[start_config_parent[curr_idx_start]])
+            curr_idx_start = start_config_parent[curr_idx_start]
+        path_from_start = ReverseList(path_from_start)
+        path_from_start.append(start_config_list[middle_idx_start])
+        
+        # trace back the path from goal
+        while goal_config_parent[curr_idx_goal] != -1:
+            path_from_goal.append(goal_config_list[goal_config_parent[curr_idx_goal]])
+            curr_idx_goal = goal_config_parent[curr_idx_goal]
+        
+        # combine the two sub-paths
+        final_path = np.concatenate((path_from_start,path_from_goal))
+    else:
+        final_path = []
+
+    return PP_success, final_path
+
+def PathSmoothing(final_path,p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6):
+    smoothed_path = []
+    for i in range(len(final_path)):
+        smoothed_path.append(final_path[i])
+    curr_start_idx = 0
+    curr_end_idx = 2
+    while curr_end_idx < len(smoothed_path):
+        if StraightLineCollisionCheck(smoothed_path[curr_start_idx],smoothed_path[curr_end_idx],p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6) == 0:
+            del smoothed_path[curr_start_idx+1]
+        curr_start_idx += 1
+        curr_end_idx = curr_start_idx + 2
+    return smoothed_path
+
+def SetJointAngles(clientID,joint_handles,joint_angles):
+    for i in range(6):
+        vrep.simxSetJointTargetPosition(clientID, joint_handles[i], joint_angles[i], vrep.simx_opmode_oneshot)
+        # Delay some time between moving two joints
+        #time.sleep(0.5)
 
 
 def GetJointsHandle(clientID):
