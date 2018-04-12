@@ -139,8 +139,18 @@ Checkpoint 4 describes a way to detect self-collision and collision with other o
 
     || P<sub>1</sub> - P<sub>2</sub> || <= radius<sub>i</sub> + radius<sub>j</sub>
     
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision1.png "Collision")
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision2.png "Collision")
+    
 Find the demo [here](https://www.youtube.com/watch?v=TOIL0BH2obo&feature=youtu.be).
 
 For the bonus, we implemented hand graspping. Find the bonus [here](https://www.youtube.com/watch?v=PDSB02fIcXc&feature=youtu.be).
+
+
+## Checkpoint 5
+
+Checkpoint 5 implements path planning algorithm. 
+
+1. Building up from checkpoint 4 with collision detection, we implement a path planning algorithm that generates a set of desired joint angles for the Jaco to move  along a  non-collision path to achieve a desired pose.
 
 
