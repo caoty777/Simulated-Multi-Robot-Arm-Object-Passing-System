@@ -154,7 +154,7 @@ Checkpoint 5 implements path planning algorithm. Building up from checkpoint 4 w
     
     ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/PathPlanning.png "PathPlanning")
 
-2. Following is an illustration of the RRT path planning algorithm including a path smoothing for optimization.
+2. Following is an illustration of the RRT path planning algorithm including path smoothing for optimization.
 
     ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/PathPlanning2.png "PathPlanning1")
     
