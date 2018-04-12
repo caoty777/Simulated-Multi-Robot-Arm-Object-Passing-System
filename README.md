@@ -147,7 +147,7 @@ Checkpoint 5 implements path planning algorithm. Building up from checkpoint 4 w
 1. Given theta<sub>initial</sub> and theta<sub>goal</sub>, find theta<sub>t</sub> :[0,1] such that:
 
     1. theta is continuous
-    2. theta(0) = theta<sub>initial</sub>
+    2. theta(0) = theta<sub>start</sub>
     3. theta(1) = theta<sub>goal</sub>
     4. theta<sub>t</sub> is not in collision for 0 < t < 1
     
