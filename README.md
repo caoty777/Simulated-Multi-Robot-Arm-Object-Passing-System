@@ -144,13 +144,20 @@ For the bonus, we implemented hand graspping. Find the bonus [here](https://www.
 
 Checkpoint 5 implements path planning algorithm. Building up from checkpoint 4 with collision detection, we implement a sampling base path planning algorithm that generates a set of desired joint angles for the Jaco to move  along a  non-collision path to achieve a desired pose. More specific, we implement the RRT algorithm for generating a non-collision path.
 
-1. Given theta<sub>initial</sub> and theta<sub>goal</sub>, find theta:[0,1] such that:
+1. Given theta<sub>initial</sub> and theta<sub>goal</sub>, find theta<sub>t</sub> :[0,1] such that:
 
     1. theta is continuous
     2. theta(0) = theta<sub>initial</sub>
     3. theta(1) = theta<sub>goal</sub>
-    4. theta is not in collision for 0 < t < 1
+    4. theta<sub>t</sub> is not in collision for 0 < t < 1
     
     ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/PathPlanning.png "PathPlanning1")
+
+2.
+
+
+
+
+
 
 
