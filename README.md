@@ -132,8 +132,9 @@ Checkpoint 4 describes a way to detect self-collision and collision with other o
 
     || P<sub>1</sub> - P<sub>2</sub> || <= radius<sub>i</sub> + radius<sub>j</sub>
     
-    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision1.png&s=200  "Collision1")
-    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision2.png&s=200 "Collision2")
+    
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision1.png  "Collision1")
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision2.png "Collision2")
     
 Find the demo [here](https://www.youtube.com/watch?v=TOIL0BH2obo&feature=youtu.be).
 
