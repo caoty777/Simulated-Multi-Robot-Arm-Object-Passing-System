@@ -126,21 +126,14 @@ Find the demo [here](https://youtu.be/3RZ7FuynWso).
 
 Checkpoint 4 describes a way to detect self-collision and collision with other objects in the environment.
 
-1. Given theta<sub>initial</sub> and theta<sub>goal</sub>, find theta:[0,1] -> R<sup>n</sup> such thta:
+1. We detect collision by assigning points along our robot, assigning a volume to the points, we use spheres in this case, and then we determine that these spheres do not come into contact among each other, or with other objects along the path.
 
-    1. theta is continuous
-    2. theta(0) = theta<sub>initial</sub>
-    3. theta(1) = theta<sub>goal</sub>
-    4. theta is not in collision for 0 < t < 1
-
-2. We detect collision by assigning points along our robot, assigning a volume to the points, we use spheres in this case, and then we determine that these spheres do not come into contact among each other, or with other objects along the path.
-
-3. We obtained the position of each point/sphere and compute the distances to  to all other points in the robot and objects in the environment. We have collision if:
+2. We obtained the position of each point/sphere and compute the distances to  to all other points in the robot and objects in the environment. We have collision if:
 
     || P<sub>1</sub> - P<sub>2</sub> || <= radius<sub>i</sub> + radius<sub>j</sub>
     
-    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision1.png "Collision")
-    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision2.png "Collision")
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision1.png "Collision1")
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/Collision2.png "Collision2")
     
 Find the demo [here](https://www.youtube.com/watch?v=TOIL0BH2obo&feature=youtu.be).
 
@@ -149,8 +142,15 @@ For the bonus, we implemented hand graspping. Find the bonus [here](https://www.
 
 ## Checkpoint 5
 
-Checkpoint 5 implements path planning algorithm. 
+Checkpoint 5 implements path planning algorithm. Building up from checkpoint 4 with collision detection, we implement a sampling base path planning algorithm that generates a set of desired joint angles for the Jaco to move  along a  non-collision path to achieve a desired pose. More specific, we implement the RRT algorithm for generating a non-collision path.
 
-1. Building up from checkpoint 4 with collision detection, we implement a path planning algorithm that generates a set of desired joint angles for the Jaco to move  along a  non-collision path to achieve a desired pose.
+1. Given theta<sub>initial</sub> and theta<sub>goal</sub>, find theta:[0,1] such that:
+
+    1. theta is continuous
+    2. theta(0) = theta<sub>initial</sub>
+    3. theta(1) = theta<sub>goal</sub>
+    4. theta is not in collision for 0 < t < 1
+    
+    ![alt text](https://github.com/axander89/ECE470/blob/master/imgs/PathPlanning.png "PathPlanning1")
 
 
