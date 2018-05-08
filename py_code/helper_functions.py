@@ -181,7 +181,8 @@ def inverse_kinematics(clientID,M,goal_pose,curr_pose,joints_zero_pos,joint_hand
         temp = np.matmul(goal_pose,np.linalg.inv(curr_pose))
         V_bracket = logm(temp)
         V = deskew_6(V_bracket)
-        if np.linalg.norm(V) < 0.5:
+        pprint(np.linalg.norm(V))
+        if np.linalg.norm(V) < 0.3:
             joint_angles = GetAllJointAngles(clientID,joints_zero_pos,joint_handles)
         else:
             theta1 = deg2rad(random.randint(-180,180))
@@ -198,7 +199,7 @@ def inverse_kinematics(clientID,M,goal_pose,curr_pose,joints_zero_pos,joint_hand
             temp = np.matmul(goal_pose,np.linalg.inv(curr_T))
             V_bracket = logm(temp)
             V = deskew_6(V_bracket)
-            if np.linalg.norm(V) < 0.005:
+            if np.linalg.norm(V) < 0.0005:
                 error = 0
                 break
             # now find the Jacobian matrix
@@ -455,13 +456,14 @@ def PathSmoothing(final_path,p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S
     smoothed_path = []
     for i in range(len(final_path)):
         smoothed_path.append(final_path[i])
-    curr_start_idx = 0
-    curr_end_idx = 2
-    while curr_end_idx < len(smoothed_path):
-        if StraightLineCollisionCheck(smoothed_path[curr_start_idx],smoothed_path[curr_end_idx],p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6) == 0:
-            del smoothed_path[curr_start_idx+1]
-        curr_start_idx += 1
-        curr_end_idx = curr_start_idx + 2
+    for i in range(3):
+        curr_start_idx = 0
+        curr_end_idx = 2
+        while curr_end_idx < len(smoothed_path):
+            if StraightLineCollisionCheck(smoothed_path[curr_start_idx],smoothed_path[curr_end_idx],p_robot,p_obstacle,r_robot,r_obstacle,S1,S2,S3,S4,S5,S6) == 0:
+                del smoothed_path[curr_start_idx+1]
+            curr_start_idx += 1
+            curr_end_idx = curr_start_idx + 2
     return smoothed_path
 
 def SetJointAngles(clientID,joint_handles,joint_angles):
@@ -517,3 +519,95 @@ def GetJointsHandle(clientID):
 
     return joint_handles
 
+
+def GetJointsHandle0(clientID):
+    joint_handles = []
+    # Get "handle" to the first joint of robot
+    result, joint_one_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint1#0', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for first joint')
+    else:
+        joint_handles.append(joint_one_handle)
+
+    # Get "handle" to the second joint of robot
+    result, joint_two_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint2#0', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for second joint')
+    else:
+        joint_handles.append(joint_two_handle)
+
+    # Get "handle" to the third joint of robot
+    result, joint_three_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint3#0', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for third joint')
+    else:
+        joint_handles.append(joint_three_handle)
+
+    # Get "handle" to the fourth joint of robot
+    result, joint_four_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint4#0', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for fourth joint')
+    else:
+        joint_handles.append(joint_four_handle)
+
+    # Get "handle" to the fifth joint of robot
+    result, joint_five_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint5#0', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for fifth joint')
+    else:
+        joint_handles.append(joint_five_handle)
+
+    # Get "handle" to the sixth joint of robot
+    result, joint_six_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint6#0', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for sixth joint')
+    else:
+        joint_handles.append(joint_six_handle)
+
+    return joint_handles
+
+def GetJointsHandle1(clientID):
+    joint_handles = []
+    # Get "handle" to the first joint of robot
+    result, joint_one_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint7', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for first joint')
+    else:
+        joint_handles.append(joint_one_handle)
+
+    # Get "handle" to the second joint of robot
+    result, joint_two_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint8', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for second joint')
+    else:
+        joint_handles.append(joint_two_handle)
+
+    # Get "handle" to the third joint of robot
+    result, joint_three_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint9', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for third joint')
+    else:
+        joint_handles.append(joint_three_handle)
+
+    # Get "handle" to the fourth joint of robot
+    result, joint_four_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint10', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for fourth joint')
+    else:
+        joint_handles.append(joint_four_handle)
+
+    # Get "handle" to the fifth joint of robot
+    result, joint_five_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint11', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for fifth joint')
+    else:
+        joint_handles.append(joint_five_handle)
+
+    # Get "handle" to the sixth joint of robot
+    result, joint_six_handle = vrep.simxGetObjectHandle(clientID, 'Jaco_joint12', vrep.simx_opmode_blocking)
+    if result != vrep.simx_return_ok:
+        raise Exception('could not get object handle for sixth joint')
+    else:
+        joint_handles.append(joint_six_handle)
+
+    return joint_handles

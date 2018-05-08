@@ -162,3 +162,49 @@ Checkpoint 5 implements path planning algorithm. Building up from checkpoint 4 w
 Find the demo [here](https://www.youtube.com/watch?v=ouvhs-biBL8&feature=youtu.be).
 
 
+## Checkpoint 6 - Final Demo
+
+The goal of the demo for the final project is to have 3 Jaco arms with grippers translate an object from an initial position to a final destination. For our scene, we placed the target object and Jaco arm 1 on table 1, the Jaco arm 3 and final destination dummy on table 2, and Jaco arm 2 in between to make the transfer between Jaco1 and Jaco 2. Also, we placed 2 dummy points between the Jaco arms to set the delivery and pick up points for each Jaco arm at the time of each transfer. These dummy points were used for the inverse kinematics for the transfer tasks.
+
+![alt text](https://github.com/axander89/ECE470/blob/master/imgs/FinalScene.png "V-REP scene for the final project demo.")
+
+We perform the final demo as follows:
+
+1. At start Jaco arm 1 will go to pick up the target object by 
+
+    1. Moving Jaco 1 slightly above the target and moving Jaco 2 to pick-up location 1
+    2. Moving incrementally Jaco 1 down to the location of the target
+    3. Closing gripper of Jaco 1
+
+2. Then,  we do transfer 1 by,
+
+    1. Moving Jaco 1 slightly above the drop-off location 1
+    2. Moving incrementally Jaco 1 down to the drop-off location 1
+    3. Closing gripper of Jaco 2
+    4. Opening gripper of Jaco 1
+    5. Moving incrementally Jaco 1 above the drop-off location 1
+    6. Moving Jaco 1 to initial position
+
+3. Then we do transfer 2 by,
+
+    1. Moving Jaco 2 to the drop-off location 2
+    2. Moving Jaco 3 slightly above the pick-up location 2
+    3. Moving incrementally Jaco 3 down to the pick-up location 2
+    4. Closing gripper of Jaco 3
+    5. Opening gripper of Jaco 2
+    6. Moving incrementally Jaco 3 above the pick-up location 2
+    7. Moving Jaco 3 and Jaco 2 to initial position
+
+4. Then we move the target to final destination by;
+
+    1. Moving Jaco 3 slightly above the destination 
+    2. Moving incrementally Jaco 3 down to the destination
+    3. Opening gripper of Jaco 1
+    4. Moving incrementally Jaco 3 above the destination
+    5. Moving Jaco 3 to initial position
+
+5. And last but not least we wave by moving only joints 3 of the Jaco arms from -pi/4 to pi/4 3 consecutive times.
+
+The code for the final demo is [JacoFinalDemo](https://github.com/axander89/ECE470/blob/master/py_code/JacoFinalDemo.py).
+
+
