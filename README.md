@@ -205,6 +205,5 @@ We perform the final demo as follows:
 
 5. And last but not least we wave by moving only joints 3 of the Jaco arms from -pi/4 to pi/4 3 consecutive times.
 
-The code for the final demo is [JacoFinalDemo](https://github.com/axander89/ECE470/blob/master/py_code/JacoFinalDemo.py).
-
+The code for the final demo is [JacoFinalDemo](https://github.com/axander89/ECE470/blob/master/py_code/JacoFinalDemo.py), and our final demo is [here](https://www.youtube.com/watch?v=lUvLlf-LwAg&t=4s).
 
