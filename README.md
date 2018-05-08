@@ -207,3 +207,7 @@ We perform the final demo as follows:
 
 The code for the final demo is [JacoFinalDemo](https://github.com/axander89/ECE470/blob/master/py_code/JacoFinalDemo.py), and our final demo is [here](https://www.youtube.com/watch?v=lUvLlf-LwAg&t=4s).
 
+6. Future Work
+
+The results of the final demo were successful. There were minor inefficiencies that could be improved. One is the grasping of the Jaco hand. The task of grasping the object was very challenging. We needed to make a special object to achieve reliable grasp. In addition, it is of our desired to add obstacles along the way, and solve the trajectory using path planning. This will add another level of difficulty and would be more realistic to real world environment with obstacles. In addition, longer term goals include the addition of constraints such as velocities along paths and duration of paths. Ideas to solve this constraints are cubic, quintic, or Bezier polynomials. 
+
